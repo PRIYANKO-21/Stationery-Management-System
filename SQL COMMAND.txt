@@ -1,0 +1,34 @@
+CREATE DATABASE SMS;
+
+CREATE TABLE stock
+(item_id INT(5) PRIMARY KEY,item_name VARCHAR(15),qty INT(6),ppu float(5,2));
+
+CREATE TABLE users
+(uname VARCHAR(30),psd VARCHAR(16),email VARCHAR(70) primary key,post VARCHAR(15));
+
+create table cost
+(pen float(5,2),pencil float(5,2),paper float(5,2),file float(5,2),notebook float(5,2),marker float(5,2),board float(5,2));
+
+CREATE TABLE orders
+(email varchar(30) PRIMARY KEY,time_stamp varchar(100),pen_qty INT(6),pencil_qty INT(6),paper_qty INT(6),file_qty INT(6),notebook_qty INT(6),marker_qty INT(6),board_qty INT(6),FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE);
+
+CREATE TABLE login
+(email VARCHAR(70) primary key,psd VARCHAR(16),FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE);
+
+CREATE TABLE admin
+(email VARCHAR(20) primary key,psd VARCHAR(16));
+
+CREATE TABLE order_status
+(email VARCHAR(20) primary key,stat VARCHAR(20),FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE);
+
+INSERT INTO  stock VALUES(1,'pen',500,5.00);
+INSERT INTO  stock VALUES(2,'pencil',500,2.00);
+INSERT INTO  stock VALUES(3,'paper',100,0.5);
+INSERT INTO  stock VALUES(4,'file',500,20.00);
+INSERT INTO  stock VALUES(5,'notebook',500,10.00);
+INSERT INTO  stock VALUES(6,'marker',500,8.00);
+INSERT INTO  stock VALUES(7,'board',500,75.00);
+
+INSERT INTO  cost VALUES(5.00,2.00,0.5,20.00,10.00,8.00,75.00);
+
+insert into admin values('a@gmail.com','admin12345');
